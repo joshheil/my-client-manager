@@ -1,0 +1,127 @@
+
+<!-- <div class="container">  -->
+<div class="col-md-10  col-md-offset-1">
+  <!-- <div class="center_div"> -->
+
+  <form>
+      <div class="row">
+        <h2 class="col-md-6 col-md-offset-4">{{dashboardClient.name}} Details</h2>
+        <!-- <div class="col-md-4"></div> -->
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2 col-md-offset-3">
+          <label>
+            Name:
+            <input type="text" name="name" class="form-control" [(ngModel)]="dashboardClient.name">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            Representative:
+            <input type="text" name="representative" class="form-control" [(ngModel)]="dashboardClient.representative">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+            <label>
+              Comodity:
+              <input type="text" name="comodity" class="form-control" [(ngModel)]="dashboardClient.comodity">
+            </label>
+          </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2 col-md-offset-4">
+          <label>
+            Supplier/Broker:
+            <input type="text" name="supplier" class="form-control">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            Utility:
+            <input type="text" name="utility" class="form-control">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="col-md-3 col-md-offset-2">Contract Details</h4>
+      </div>
+      
+      <div class="row">
+        <div class="form-group col-md-2 col-md-offset-3">
+          <label>
+            Start Date:
+            <input type="text" name="startDate" class="form-control" [(ngModel)]="dashboardClient.startDate">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            End Date:
+            <input type="text" name="endDate" class="form-control" [(ngModel)]="dashboardClient.endDate">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            Price:
+            <input type="text" name="price" class="form-control" [(ngModel)]="dashboardClient.price">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2 col-md-offset-3">
+          <label>
+            TER Margin:
+            <input type="text" name="terMargin" class="form-control">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            Broker Margin:
+            <input type="text" name="brokerMargin" class="form-control">
+          </label>
+        </div>
+        <div class="form-group col-md-2">
+          <label>
+            Annual Volume:
+            <input type="text" name="annualVolume" class="form-control">
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <h4 class="col-md-12">Client Notes</h4>
+        <div class="form-group col-md-12">
+          <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- <tr ng-repeat="dashboardClient in dashboardClients"> -->
+                <tr *ngFor="let note of dashboardClient.notes">
+                    <td>{{note.subject}}</td>
+                    <td>{{note.date}}</td>
+                    <td>{{note.details}}</td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="form-group col-md-1 col-md-offset-4">
+          <button type="button" class="btn btn-primary" disabled>Edit</button>
+        </div> -->
+        <div class="form-group col-md-1 col-md-offset-5">
+          <button type="submit" class="btn btn-primary" disabled>Save</button>
+        </div>        
+        <!-- <div class="form-group col-md-1">
+          <button type="button" class="btn btn-primary" disabled>Cancel</button>
+        </div> -->
+        <div class="form-group col-md-1">
+          <button type="button" class="btn btn-primary" (click)="goBack();">Close</button>
+        </div>
+      </div>  
+  </form>
+</div>
+
