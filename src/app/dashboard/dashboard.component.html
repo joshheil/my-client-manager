@@ -8,22 +8,22 @@
 
 
 <div class="grid grid-pad">
-  <table class="table table-hover">
+  <table matSort (matSortChange)="sortData($event)" class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Representative</th>
-        <th scope="col">Commodity</th>
-        <th scope="col">Start Date</th>
-        <th scope="col">End Date</th>
-        <th scope="col">Price</th>
+        <th mat-sort-header="name" scope="col">Name</th>
+        <th mat-sort-header="representative" scope="col">Representative</th>
+        <th mat-sort-header="comodity" scope="col">Commodity</th>
+        <th mat-sort-header="startDate" scope="col">Start Date</th>
+        <th mat-sort-header="endDate" scope="col">End Date</th>
+        <th mat-sort-header="price" scope="col">Price</th>
       </tr>
     </thead>
     <tbody>
       <!-- <tr ng-repeat="dashboardClient in dashboardClients"> -->
-      <tr *ngFor="let dashboardClient of dashboardClients"
-        (click)="selectedDashboardClient(dashboardClient)" 
-        [class.active]="dashboardClient.id == selectedRow">
+      <tr *ngFor="let dashboardClient of sortedData"
+          (click)="selectedDashboardClient(dashboardClient)" 
+          [class.active]="dashboardClient.id == selectedRow">
           <td>{{dashboardClient.name}}</td>
           <td>{{dashboardClient.representative}}</td>
           <td>{{dashboardClient.comodity}}</td>
