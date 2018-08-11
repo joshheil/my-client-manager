@@ -3,6 +3,36 @@
     <router-outlet></router-outlet>
   </div>
   <ng-template #showLogin>
-    <p>Please login.</p>
-    <button (click)="login()">Login with Email</button>
+    <form>
+      <div class="row">
+        <div class="form-group col-md-5 col-md-offset-4">
+          <h1>Welcome to Client Manager!</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-3 col-md-offset-5">
+          <mat-form-field class="example-full-width">
+            <input matInput name="username" placeholder="Username" [(ngModel)]="credentials.username" (input)="typeytypetype()">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-3 col-md-offset-5">
+          <mat-form-field class="example-full-width">
+              <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="credentials.password" (input)="typeytypetype()">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-2 col-centered">
+          <p *ngIf="loginError"><i>Email or Password is Incorrect!</i></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-1 col-centered">
+          <button class="btn btn-primary" (click)="login()">Login</button>
+        </div>
+      </div>
+
+    </form>
   </ng-template>

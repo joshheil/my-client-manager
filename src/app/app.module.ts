@@ -10,7 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatSortModule, MatTableModule } from '@angular/material';
+import { MatSortModule, MatTableModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { MatSortModule, MatTableModule } from '@angular/material';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DashboardClient } from './dashboardclient.model';
 import { ClientService } from '../client.service';
 import {Sort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,16 +16,15 @@ export class DashboardComponent implements OnInit {
   selectedRow : Number;
   setClickedRow : Function;
   sortedData: DashboardClient[];
-  // clients: Client[] = [];
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['name', 'representative', 'comodity', 'startDate', 'endDate', 'price'];
 
-  // constructor(private clientService: ClientService) { }
-  constructor(private router: Router, private clientService: ClientService) { 
-    
-  }
+  constructor(private router: Router, private clientService: ClientService) {}
 
   ngOnInit() {
     this.getClients();
     this.sortedData = this.dashboardClients.slice();
+    this.dataSource = new MatTableDataSource(this.sortedData);
   }
 
   getClients(): void {
@@ -34,7 +34,10 @@ export class DashboardComponent implements OnInit {
 
   selectedDashboardClient(dashboardClient):void{
     this.router.navigate(['./details/'+ dashboardClient.id]);
-    // this.selectedRow = dashboardClient.id;
+  }
+
+  addRecord() {
+    this.router.navigate(['./details/']);
   }
 
   sortData(sort: Sort) {
@@ -57,6 +60,10 @@ export class DashboardComponent implements OnInit {
         default: return 0;
       }
     });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   compare(a, b, isAsc) {

@@ -2,35 +2,41 @@
   <h1>
     Welcome to Client Manager!
   </h1>
-  <!-- <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="> -->
 </div>
 <h3>Your Clients</h3>
 
 
 <div class="grid grid-pad">
-  <table matSort (matSortChange)="sortData($event)" class="table table-hover">
-    <thead>
-      <tr>
-        <th mat-sort-header="name" scope="col">Name</th>
-        <th mat-sort-header="representative" scope="col">Representative</th>
-        <th mat-sort-header="comodity" scope="col">Commodity</th>
-        <th mat-sort-header="startDate" scope="col">Start Date</th>
-        <th mat-sort-header="endDate" scope="col">End Date</th>
-        <th mat-sort-header="price" scope="col">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- <tr ng-repeat="dashboardClient in dashboardClients"> -->
-      <tr *ngFor="let dashboardClient of sortedData"
-          (click)="selectedDashboardClient(dashboardClient)" 
-          [class.active]="dashboardClient.id == selectedRow">
-          <td>{{dashboardClient.name}}</td>
-          <td>{{dashboardClient.representative}}</td>
-          <td>{{dashboardClient.comodity}}</td>
-          <td>{{dashboardClient.startDate}}</td>
-          <td>{{dashboardClient.endDate}}</td>
-          <td>{{dashboardClient.price}}</td>
-        </tr>
-    </tbody>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    <button type="button" class="btn btn-primary" (click)="addRecord();">Add</button>
+  </mat-form-field>
+  <table mat-table matSort (matSortChange)="sortData($event)" [dataSource]="dataSource" class="table table-hover mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="representative">
+        <th mat-header-cell *matHeaderCellDef> Representative </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.representative}} </td>
+      </ng-container>
+      <ng-container matColumnDef="comodity">
+        <th mat-header-cell *matHeaderCellDef> Comodity </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.comodity}} </td>
+      </ng-container>
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef> Start Date </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.startDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef> End Date </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.endDate}} </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let dashboardClient"> {{dashboardClient.price}} </td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
